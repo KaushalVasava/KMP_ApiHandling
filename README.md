@@ -120,6 +120,7 @@ It is a simple app where Home page shows all photos from Unplace api and FullIma
    }         
 
 # Desktop support steps:
+  Reference link -> https://stackoverflow.com/questions/74890057/how-to-add-desktop-support-to-kotlin-multiplatform-mobile-project
 - Add this code in you `settings.gradle.kts`
   ```
   include(":androidApp")
