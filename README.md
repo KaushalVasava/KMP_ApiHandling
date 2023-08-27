@@ -5,7 +5,7 @@ It is a simple app where Home page shows all photos from Unplace api and FullIma
 - Kotlin Multi Platform to Develop Apps for different platform like Android, Ios, Desktop, Web and MacOs.
 - Kotlin for coding.
 - Jetpack compose for UI development.
-- Ktor client for API calling.
+- Ktor client for API calls.
 - MVVM architecture for better code reusability and management.
 - Moko-Viewmodel for Viewmodel support in KMP.
 - Navigation using PreCompose library.
