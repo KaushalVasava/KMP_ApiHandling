@@ -2,13 +2,18 @@
 It is a simple app where Home page shows all photos from Unplace api and FullImage page shows particular image using MVVM architecture.
 
 # Technologies used:
-- Kotlin Mutli Platform to Develop Apps for different platform like Android, Ios, Desktop, Web and MacOs.
+- Kotlin Multi Platform to Develop Apps for different platform like Android, Ios, Desktop, Web and MacOs.
 - Kotlin for coding.
 - Jetpack compose for UI development.
 - Ktor client for API calling.
 - MVVM architecture for better code reusability and management.
 - Moko-Viewmodel for Viewmodel support in KMP.
 - Navigation using PreCompose library.
+
+# Supported Platform
+- Android
+- iOS (you need a Mac) 
+- Desktop
 
 # Project Setup
 - Goto Android Studio
@@ -241,7 +246,7 @@ It is a simple app where Home page shows all photos from Unplace api and FullIma
 - You should now be able to run the desktop app
 
 # Some IMP docs
-- KOtlin Multi platform
+- Kotlin Multi platform
 
   https://kotlinlang.org/docs/multiplatform.html
 
