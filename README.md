@@ -16,6 +16,7 @@ It is a simple app where Home page shows all photos from Unplace api and FullIma
 - Desktop
 
 # Project Setup
+ You need add your unplash api key to run this app. So first create free developer account on unplash. and add this app key in `AppConstants.kt` file
  https://medium.com/@KaushalVasava/kotlin-multi-platform-project-setup-guide-340aae9b3bea
 # Some IMP docs
 - Kotlin Multi platform
