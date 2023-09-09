@@ -1,6 +1,8 @@
 package com.kaushalvasava.apps.kmp_api_handling.ui
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -12,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -27,6 +30,9 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.kaushalvasava.apps.kmp_api_handling.getUrlEncodedString
@@ -37,6 +43,7 @@ import io.kamel.image.KamelImage
 import io.kamel.image.asyncPainterResource
 import moe.tlaster.precompose.navigation.Navigator
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HomeScreen(viewModel: MainViewModel, navigator: Navigator) {
     val uiState by viewModel.uiState.collectAsState()
@@ -59,42 +66,55 @@ fun HomeScreen(viewModel: MainViewModel, navigator: Navigator) {
 
         is ImageUiState.Success -> {
             AnimatedVisibility(state.images.isNotEmpty()) {
-                LazyVerticalGrid(
-                    columns = GridCells.Adaptive(140.dp),
-                    horizontalArrangement = Arrangement.spacedBy(5.dp),
-                    verticalArrangement = Arrangement.spacedBy(5.dp),
-                    modifier = Modifier.fillMaxSize().padding(horizontal = 5.dp),
-                    content = {
-                        items(state.images) {
-                            PhotoImage(it) {
-                                val encodedUrl = getUrlEncodedString(it.urls.regular)
-                                navigator.navigate("${NavigationItem.ViewImage.route}/$encodedUrl")
+                Box(modifier = Modifier.fillMaxSize()) {
+                    LazyVerticalGrid(
+                        columns = GridCells.Adaptive(140.dp),
+                        horizontalArrangement = Arrangement.spacedBy(5.dp),
+                        verticalArrangement = Arrangement.spacedBy(5.dp),
+                        modifier = Modifier.fillMaxSize().padding(horizontal = 5.dp),
+                        content = {
+                            items(state.images) {
+                                Row(modifier = Modifier.animateItemPlacement()){
+                                    PhotoImage(it) {
+                                        val encodedUrl = getUrlEncodedString(it.urls.regular)
+                                        navigator.navigate("${NavigationItem.ViewImage.route}/$encodedUrl")
+                                    }
+                                }
                             }
                         }
-                        item {
-                            Row(
-                                modifier = Modifier.fillMaxWidth(1f),
-                                horizontalArrangement = Arrangement.SpaceAround
-                            ) {
-                                IconButton(onClick = {
+                    )
+                    Row(
+                        modifier = Modifier.fillMaxWidth(1f).padding(16.dp)
+                            .align(Alignment.BottomCenter),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        IconButton(
+                            onClick = {
+                                if (page != 1) {
                                     viewModel.updateImages(page - 1)
-                                    if (page < 1)
-                                        page = 1
-                                    else
-                                        page -= 1
-                                }) {
-                                    Icon(Icons.Default.ArrowBack, contentDescription = null)
                                 }
-                                IconButton(onClick = {
-                                    viewModel.updateImages(page + 1)
-                                    page += 1
-                                }) {
-                                    Icon(Icons.Default.ArrowForward, contentDescription = null)
-                                }
-                            }
+                                if (page <= 1)
+                                    page = 1
+                                else
+                                    page -= 1
+                            },
+                            modifier = Modifier.alpha(0.7f).clip(CircleShape)
+                                .background(Color.LightGray)
+                        ) {
+                            Icon(Icons.Default.ArrowBack, contentDescription = null)
+                        }
+                        IconButton(
+                            onClick = {
+                                viewModel.updateImages(page + 1)
+                                page += 1
+                            },
+                            modifier = Modifier.alpha(0.7f).clip(CircleShape)
+                                .background(Color.LightGray)
+                        ) {
+                            Icon(Icons.Default.ArrowForward, contentDescription = null)
                         }
                     }
-                )
+                }
             }
         }
     }

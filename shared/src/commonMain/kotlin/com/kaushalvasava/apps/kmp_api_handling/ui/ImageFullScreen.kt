@@ -13,6 +13,7 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -41,6 +42,7 @@ fun ImageFullScreen(imageUrl: String, navigator: Navigator) {
                 navigator.popBackStack()
             },
             modifier = Modifier.align(Alignment.BottomStart)
+                .alpha(0.7f)
                 .padding(16.dp)
                 .clip(CircleShape)
                 .background(Color.Gray)
