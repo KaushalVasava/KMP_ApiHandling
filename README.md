@@ -50,7 +50,7 @@ It is a simple app where Home page shows all photos from Unplace api and FullIma
 ![Screenshot 2023-08-26 205423](https://github.com/KaushalVasava/KMP_ApiHanding/assets/49050597/0101edc7-b32b-40ef-8998-78f188a70a38)
 
 
-https://github.com/KaushalVasava/KMP_ApiHanding/assets/49050597/0a2a4eae-b988-43d9-bc23-7e937d5e675a
+https://github.com/KaushalVasava/KMP_ApiHanding/assets/49050597/2b414a01-e40a-4a68-9664-f54408285f5d
 
 
 # Thank you
