@@ -17,3 +17,9 @@ actual fun getUrlEncodedString(input: String): String {
 actual fun getUrlDecodedString(input: String): String {
     return URLDecoder.decode(input, StandardCharsets.UTF_8.toString())
 }
+
+actual fun getDeviceType(): Int {
+    return when{
+        else -> 0
+    }
+}

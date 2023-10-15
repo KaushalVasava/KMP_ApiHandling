@@ -35,6 +35,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import com.kaushalvasava.apps.kmp_api_handling.getDeviceType
 import com.kaushalvasava.apps.kmp_api_handling.getUrlEncodedString
 import com.kaushalvasava.apps.kmp_api_handling.model.ImageModel
 import com.kaushalvasava.apps.kmp_api_handling.model.ImageUiState
@@ -50,7 +51,9 @@ fun HomeScreen(viewModel: MainViewModel, navigator: Navigator) {
     var page by rememberSaveable {
         mutableStateOf(1)
     }
-
+    val deviceType = rememberSaveable {
+        getDeviceType()
+    }
     when (val state = uiState) {
         is ImageUiState.Error -> {
             Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -68,13 +71,21 @@ fun HomeScreen(viewModel: MainViewModel, navigator: Navigator) {
             AnimatedVisibility(state.images.isNotEmpty()) {
                 Box(modifier = Modifier.fillMaxSize()) {
                     LazyVerticalGrid(
-                        columns = GridCells.Adaptive(140.dp),
+                        columns = GridCells.Adaptive(
+                            when (deviceType) {
+                                0 -> 140.dp
+                                1 -> 200.dp
+                                2 -> 260.dp
+                                else ->
+                                    140.dp
+                            }
+                        ),
                         horizontalArrangement = Arrangement.spacedBy(5.dp),
                         verticalArrangement = Arrangement.spacedBy(5.dp),
                         modifier = Modifier.fillMaxSize().padding(horizontal = 5.dp),
                         content = {
                             items(state.images) {
-                                Row(modifier = Modifier.animateItemPlacement()){
+                                Row(modifier = Modifier.animateItemPlacement()) {
                                     PhotoImage(it) {
                                         val encodedUrl = getUrlEncodedString(it.urls.regular)
                                         navigator.navigate("${NavigationItem.ViewImage.route}/$encodedUrl")

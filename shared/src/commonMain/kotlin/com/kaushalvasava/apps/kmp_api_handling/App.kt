@@ -20,3 +20,11 @@ fun App() {
 expect fun getUrlEncodedString(input: String): String
 expect fun getUrlDecodedString(input: String): String
 expect fun getPlatformName(): String
+
+/**
+ * DeviceTypes:
+ * 0 -> Phone
+ * 1 -> Tablet
+ * 2 -> Desktop
+ * */
+expect fun getDeviceType(): Int
