@@ -68,3 +68,6 @@ fun decodeUrl(encodedUrl: String): String {
     return decoded.toString().replace("%", "/")
 }
 
+actual fun getDeviceType(): Int {
+    return 2
+}
