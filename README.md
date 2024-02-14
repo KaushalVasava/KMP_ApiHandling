@@ -1,4 +1,4 @@
-# KMP_ApiHanding
+# KMP_ApiHandling
 It is a simple app where Home page shows all photos from Unplace api and FullImage page shows particular image using MVVM architecture.
 
 # Technologies used:
